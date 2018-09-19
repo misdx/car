@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dkl.dao.carproduct.ProductInfoMapping">
+    <!-- List<ProductBrand> findProductBrandList(); -->
+    <select id="findProductInfoListMap" resultType="productInfo">
+        SELECT product_id ,product_sales, product_title,product_describe,product_price,product_icon FROM productinfo
+        where product_status=0
+    </select>
+    <!--  // 根据商品id 查询单个商品 -->
+    <select id="findByProductInfoOne" resultType="productInfo">
+        select * from productInfo
+        where product_id =#{productId}
+    </select>
+
+    <!-- List<ProductInfo> findProductInfoBrandId(@Param("brandId") Integer brandId, @Param("productId") Integer productId); -->
+    <select id="findProductInfoBrandId" resultType="productInfo">
+        select product_id ,product_sales, product_title,product_describe,product_price,product_icon from productInfo
+        where product_id != #{productId} and brand_id = #{brandId}
+    </select>
+</mapper>

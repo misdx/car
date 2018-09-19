@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dkl.dao.carproduct.ProductParameterInfoMapping">
+    <!--  ProductParameterInfo findProductParameterInfoOne(String productId); -->
+    <select id="findProductParameterInfoOne" resultType="productParameterInfo">
+        SELECT
+            cpi_modelname,mi.mi_name,cpi_engine,cpi_mm,cpi_wheel,
+            cpi_cubage,cpi_curb,cpi_steering,cpi_speed,cpi_speedTime,
+            cpi_fuel,cpi_quality
+            FROM productparameterinfo ppi
+            LEFT JOIN maunfacturerinfo mi
+            ON ppi.mi_id = mi.mi_id
+            WHERE cpi_id=#{cpiId}
+    </select>
+</mapper>

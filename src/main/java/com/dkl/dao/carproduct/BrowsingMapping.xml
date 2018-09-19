@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dkl.dao.carproduct.BrowsingMapping">
+    <!--  int browsingAdd(Browsing browsing); -->
+    <insert id="browsingAdd">
+        insert into browsing values(null,#{browsing.productId},#{browsing.userId},default )
+    </insert>
+    <!-- int browsingClear(Browsing browsing); -->
+    <delete id="browsingClear">
+        DELETE FROM browsing
+        WHERE user_id=#{browsing.userId} AND browsing_id &lt; #{browsing.browsingId}
+    </delete>
+
+    <!-- int findBrowsingClearId(Integer userId); -->
+    <select id="findBrowsingClearId" resultType="int">
+        SELECT s.browsing_id FROM browsing s
+        WHERE s.user_id=#{userId}
+        ORDER BY s.browsing_id DESC
+        LIMIT 4,1
+        <!--TODO 如果需要更改浏览记录数量 则点击我-->
+    </select>
+
+    <!-- int findBrowsingUserId(@Param("userId") Integer userId,@Param("productId") String productId);-->
+    <select id="findBrowsingUserId" resultType="int">
+        SELECT count(1) FROM browsing
+        WHERE user_id=#{userId}
+        <if test="productId!=null">
+            and product_id=#{productId}
+        </if>
+    </select>
+
+
+</mapper>

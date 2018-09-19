@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dkl.dao.order.CarOrderDetailMapping">
+
+    <!-- 创建订单详情 int carOrderDetailAdd(@Param("detail") CarOrderDetail carOrderDetail); -->
+    <insert id="carOrderDetailAdd">
+        insert into carorderdetail values(#{detail.carDetailId},#{detail.carOrderId},#{detail.carProductId},#{detail.carProductName},#{detail.carProductIcon},#{detail.carProductPrice},#{detail.carProductQuantity},#{detail.carProductColor},#{detail.carProductTrim},default,default)
+    </insert>
+</mapper>

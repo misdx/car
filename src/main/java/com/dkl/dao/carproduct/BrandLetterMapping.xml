@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dkl.dao.carproduct.BrandLetterMapping">
+    <!-- List<ProductBrand> findProductBrandList(); -->
+
+    <resultMap id="brandLetters" type="brandLetter">
+        <id column="letter_id" property="letterId"/>
+        <collection property="productBrandList" column="letter_id"
+                     select="com.dkl.dao.carproduct.ProductBrandMapping.findByProductBrand" javaType="java.util.ArrayList">
+        </collection>
+    </resultMap>
+
+
+    <select id="findBrandLetterList" resultMap="brandLetters">
+        select * from brandLetter
+    </select>
+</mapper>

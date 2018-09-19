@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/car_insurance?serverTimezone=CTT&amp;useSSL=true
+    username: root
+    password: 1234
+  jackson:
+    default-property-inclusion: non_null
+  thymeleaf:
+    encoding: UTF-8
+    #开发时关闭缓存,不然没法看到实时页面
+    cache: false
+    prefix: classpath:/static/
+    suffix: .html
+
+mybatis:
+  type-aliases-package: com.dkl.pojo
+  mapper-locations: classpath:com/dkl/dao/**.xml
+  configuration:
+    auto-mapping-behavior: full
+    use-generated-keys: true
+    map-underscore-to-camel-case: true
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+  pageSizeZero: true
